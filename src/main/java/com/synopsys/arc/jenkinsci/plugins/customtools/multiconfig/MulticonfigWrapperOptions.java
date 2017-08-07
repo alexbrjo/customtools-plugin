@@ -15,15 +15,21 @@
  */
 package com.synopsys.arc.jenkinsci.plugins.customtools.multiconfig;
 
+import hudson.Extension;
 import hudson.matrix.MatrixProject;
 import java.io.Serializable;
+
+import hudson.model.Describable;
+import hudson.model.Descriptor;
+import jenkins.model.Jenkins;
+import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 /**
  * Provides specific options for {@link MatrixProject}s.
  * @author Oleg Nenashev
  */
-public class MulticonfigWrapperOptions implements Serializable {
+public class MulticonfigWrapperOptions implements Serializable, Describable<MulticonfigWrapperOptions> {
     private final boolean skipMasterInstallation;
     public static final MulticonfigWrapperOptions DEFAULT = new MulticonfigWrapperOptions(false);
 
@@ -34,5 +40,20 @@ public class MulticonfigWrapperOptions implements Serializable {
 
     public boolean isSkipMasterInstallation() {
         return skipMasterInstallation;
-    }    
+    }
+
+    @Override
+    public MulticonfigWrapperOptionsDescriptor getDescriptor() {
+        return (MulticonfigWrapperOptionsDescriptor) Jenkins.getActiveInstance().getDescriptor(getClass());
+    }
+
+    @Symbol("multiconfigToolOptions")
+    @Extension
+    public static class MulticonfigWrapperOptionsDescriptor extends Descriptor<MulticonfigWrapperOptions> {
+
+        @Override
+        public String getDisplayName() {
+            return "MultiConfig wrapper options";
+        }
+    }
 }

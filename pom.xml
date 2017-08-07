@@ -15,8 +15,9 @@
 
   <properties>
     <jenkins.version>1.609.3</jenkins.version>
-    <java.level>6</java.level>
+    <java.level>7</java.level>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <findbugs.failOnError>false</findbugs.failOnError>
   </properties>
 
   <developers>
@@ -67,6 +68,16 @@
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>extended-choice-parameter</artifactId>
       <version>0.28</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-step-api</artifactId>
+      <version>2.10</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>structs</artifactId>
+      <version>1.7</version>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>

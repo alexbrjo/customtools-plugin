@@ -17,6 +17,8 @@ package com.synopsys.arc.jenkinsci.plugins.customtools;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.model.BuildListener;
+import hudson.model.TaskListener;
+
 import javax.annotation.Nonnull;
 
 /**
@@ -50,6 +52,14 @@ public class CustomToolsLogger {
     }
     
     public static void logMessage(@Nonnull BuildListener listener, String toolName, String message) {
+        listener.getLogger().println(CustomToolsLogger.LOG_PREFIX+toolName+": "+message);
+    }
+
+    public static void logMessage(@Nonnull TaskListener listener, String message) {
+        listener.getLogger().println(CustomToolsLogger.LOG_PREFIX+message);
+    }
+
+    public static void logMessage(@Nonnull TaskListener listener, String toolName, String message) {
         listener.getLogger().println(CustomToolsLogger.LOG_PREFIX+toolName+": "+message);
     }
 }
